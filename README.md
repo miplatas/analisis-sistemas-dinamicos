@@ -2,11 +2,8 @@
 
 Material de clase, ejemplos resueltos y plantillas de simulación para la Unidad de Aprendizaje **Análisis y Simulación de Sistemas Dinámicos** (5° semestre, Licenciatura en Ingeniería en Electromovilidad - FIME, UANL).
 
-## Estructura de Ramas
-
-* **`main`**: Documentación general del curso, programa analítico y enunciados.
-* **`python`**: Todos los ejemplos y simulaciones resueltos en Python (`numpy`, `scipy`, `matplotlib`, `control`, `sympy`).
-* **`scilab`**: Todos los ejemplos y simulaciones resueltos en Scilab (`.sce` / `.sci`).
+El material utiliza Python y notebooks de Jupyter, con bibliotecas como
+NumPy, SciPy, Matplotlib, SymPy y python-control. La rama principal es `main`.
 
 ## Contenido por Fases
 
@@ -16,7 +13,7 @@ Material de clase, ejemplos resueltos y plantillas de simulación para la Unidad
 4. **Fase 4:** Análisis de estabilidad (Routh-Hurwitz, linealización y Lyapunov).
 5. **PIA:** Proyecto Integrador de Aprendizaje.
 
-## Inicio rápido en la rama Python
+## Inicio rápido
 
 Los notebooks presentan conceptos, ejemplos ejecutables y ejercicios de cada
 tema de las cuatro fases. La biblioteca compartida `sistemas_dinamicos` reúne
@@ -25,16 +22,20 @@ se utilizan directamente NumPy, SciPy y SymPy cuando ayudan a mostrarlo.
 
 ### Instalación local para estudiantes
 
-Necesitas Python 3.10 o posterior y Git. Descarga la rama `python` y entra
+Necesitas Python 3.10 o posterior y Git. Descarga el repositorio y entra
 en la carpeta del proyecto:
 
 ```bash
-git clone -b python https://github.com/miplatas/analisis-sistemas-dinamicos.git
+git clone -b main https://github.com/miplatas/analisis-sistemas-dinamicos.git
 cd analisis-sistemas-dinamicos
 ```
 
-Si ya descargaste el repositorio, entra en su carpeta y usa `git switch python`
-en lugar de clonarlo de nuevo.
+Si ya descargaste el repositorio, entra en su carpeta y actualiza `main`:
+
+```bash
+git switch main
+git pull --ff-only origin main
+```
 
 Cada estudiante debe crear su propio entorno virtual. La carpeta `.venv`
 no se incluye en el repositorio porque depende de la computadora y del sistema
