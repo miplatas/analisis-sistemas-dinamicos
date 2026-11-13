@@ -1,6 +1,2 @@
-numpy
-scipy
-matplotlib
-control
-sympy
+-e .
 jupyter
