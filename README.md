@@ -23,20 +23,67 @@ tema de las cuatro fases. La biblioteca compartida `sistemas_dinamicos` reúne
 operaciones repetitivas para que los ejemplos se centren en el modelo; también
 se utilizan directamente NumPy, SciPy y SymPy cuando ayudan a mostrarlo.
 
-Desde la raíz del repositorio, con Python 3.10 o posterior:
+### Instalación local para estudiantes
+
+Necesitas Python 3.10 o posterior y Git. Descarga la rama `python` y entra
+en la carpeta del proyecto:
 
 ```bash
-git switch python
+git clone -b python https://github.com/miplatas/analisis-sistemas-dinamicos.git
+cd analisis-sistemas-dinamicos
+```
+
+Si ya descargaste el repositorio, entra en su carpeta y usa `git switch python`
+en lugar de clonarlo de nuevo.
+
+Cada estudiante debe crear su propio entorno virtual. La carpeta `.venv`
+no se incluye en el repositorio porque depende de la computadora y del sistema
+operativo:
+
+```bash
 python -m venv .venv
-source .venv/bin/activate  # En Windows: .venv\Scripts\activate
+```
+
+Activa el entorno con el comando correspondiente a tu terminal:
+
+```bash
+# Linux o macOS
+source .venv/bin/activate
+```
+
+```powershell
+# Windows: PowerShell
+.\.venv\Scripts\Activate.ps1
+```
+
+```bat
+REM Windows: símbolo del sistema (CMD)
+.venv\Scripts\activate.bat
+```
+
+Con el entorno activado, instala las dependencias y la biblioteca del curso:
+
+```bash
 python -m pip install -r requirements.txt
+```
+
+La instalación inicial necesita conexión a internet; después puedes ejecutar
+los notebooks sin conexión. Para usarlos, elige una de estas opciones:
+
+* **VS Code:** instala las extensiones Python y Jupyter, abre la carpeta del
+  proyecto y un notebook. Al ejecutar una celda, selecciona **Python
+  Environments** y el intérprete de `.venv` como kernel.
+* **JupyterLab:** desde la terminal con el entorno activado, ejecuta:
+
+```bash
 python -m jupyter lab
 ```
 
 La instalación editable permite importar la biblioteca desde los notebooks
-de cualquier carpeta. En Jupyter o VS Code, selecciona el intérprete/kernel
-del entorno `.venv` y ejecuta las celdas en orden. Si utilizas un kernel distinto,
-instala las dependencias y la biblioteca también en ese entorno.
+de cualquier carpeta. Ejecuta las celdas en orden. Si utilizas un kernel distinto,
+instala las dependencias y la biblioteca también en ese entorno. En futuras
+sesiones no necesitas repetir la instalación: basta con activar `.venv` y abrir
+los notebooks; repítela si cambian las dependencias.
 
 ### Cuadernos
 
