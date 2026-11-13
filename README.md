@@ -96,19 +96,38 @@ los notebooks; repítela si cambian las dependencias.
   [transitorio y error](Fase_02_Analisis_Sistemas_Lineales/2_2_Respuesta_Transitoria_Error_SISO/tema.ipynb),
   [estados MIMO](Fase_02_Analisis_Sistemas_Lineales/2_3_Solucion_Ecuacion_Estados_MIMO/tema.ipynb),
   [Bode](Fase_02_Analisis_Sistemas_Lineales/2_4_Respuesta_Frecuencia_Bode/tema.ipynb).
-* **Fase 3:** [Euler](Fase_03_Metodos_Numericos_No_Lineales/3_1_Metodo_Euler/tema.ipynb),
-  [Runge-Kutta 4](Fase_03_Metodos_Numericos_No_Lineales/3_2_Metodo_Runge_Kutta_4/tema.ipynb),
-  [error y estabilidad numérica](Fase_03_Metodos_Numericos_No_Lineales/3_3_Errores_Paso_Estabilidad_Numerica/tema.ipynb).
+* **Fase 3:** [Euler](Fase_03_Metodos_Numericos/3_1_Metodo_Euler/tema.ipynb),
+  [Runge-Kutta 4](Fase_03_Metodos_Numericos/3_2_Metodo_Runge_Kutta_4/tema.ipynb),
+  [error y estabilidad numérica](Fase_03_Metodos_Numericos/3_3_Errores_Paso_Estabilidad_Numerica/tema.ipynb).
 * **Fase 4:** [polos y Routh-Hurwitz](Fase_04_Analisis_Estabilidad/4_1_Polos_Ceros_Routh_Hurwitz/tema.ipynb),
   [equilibrios y linealización](Fase_04_Analisis_Estabilidad/4_2_Puntos_Equilibrio_Linealizacion/tema.ipynb),
   [Lyapunov](Fase_04_Analisis_Estabilidad/4_3_Estabilidad_Lyapunov/tema.ipynb).
 
 Las carpetas de evidencias y del PIA quedan pendientes de sus enunciados y rúbricas.
 
+### Ejemplos adicionales
+
+* **Euler y trayectorias:** [péndulo amortiguado](Fase_03_Metodos_Numericos/3_1_Metodo_Euler/ejemplos/integracion_numerica_pendulo.ipynb),
+  [suspensión](Fase_03_Metodos_Numericos/3_1_Metodo_Euler/ejemplos/integracion_numerica_suspension.ipynb),
+  [motor de CD](Fase_03_Metodos_Numericos/3_1_Metodo_Euler/ejemplos/integracion_numerica_motor_cd.ipynb) y
+  [sistema de Lorenz](Fase_03_Metodos_Numericos/3_1_Metodo_Euler/ejemplos/integracion_numerica_lorenz.ipynb).
+* **RK4 y trayectorias:** [péndulo amortiguado](Fase_03_Metodos_Numericos/3_2_Metodo_Runge_Kutta_4/ejemplos/integracion_numerica_pendulo.ipynb),
+  [suspensión](Fase_03_Metodos_Numericos/3_2_Metodo_Runge_Kutta_4/ejemplos/integracion_numerica_suspension.ipynb),
+  [motor de CD](Fase_03_Metodos_Numericos/3_2_Metodo_Runge_Kutta_4/ejemplos/integracion_numerica_motor_cd.ipynb) y
+  [sistema de Lorenz](Fase_03_Metodos_Numericos/3_2_Metodo_Runge_Kutta_4/ejemplos/integracion_numerica_lorenz.ipynb).
+* **Campos de fase y equilibrios:** [péndulo y linealización](Fase_04_Analisis_Estabilidad/4_2_Puntos_Equilibrio_Linealizacion/ejemplos/campo_pendulo.ipynb),
+  [suspensión](Fase_04_Analisis_Estabilidad/4_2_Puntos_Equilibrio_Linealizacion/ejemplos/campo_suspension.ipynb),
+  [motor de CD](Fase_04_Analisis_Estabilidad/4_2_Puntos_Equilibrio_Linealizacion/ejemplos/campo_motor_cd.ipynb) y
+  [proyección del sistema de Lorenz](Fase_04_Analisis_Estabilidad/4_2_Puntos_Equilibrio_Linealizacion/ejemplos/campo_lorenz.ipynb).
+
 ### Biblioteca y pruebas
 
-La biblioteca ofrece `escalon`, `graficar`, `convolucion`, `integrar` y
-`routh`. La convolución supone señales causales muestreadas uniformemente
+La biblioteca ofrece `escalon`, `graficar`, `campo_fase`, `retrato_fase`,
+`convolucion`, `integrar` y `routh`. `campo_fase` normaliza las flechas y
+colorea la magnitud numérica de las derivadas según las escalas elegidas;
+cuando los estados tienen unidades distintas, esa magnitud no es una rapidez
+física. `graficar` usa líneas sólidas, raya-punto y punteadas sucesivamente;
+el ciclo se reinicia en cada gráfica. La convolución supone señales causales muestreadas uniformemente
 desde cero; `integrar` admite Euler explícito y RK4 con una malla creciente.
 `routh` admite coeficientes reales numéricos y avisa cuando hay pivotes cero
 o filas nulas, que requieren el tratamiento especial del criterio.

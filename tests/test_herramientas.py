@@ -1,12 +1,39 @@
 import unittest
 
+import matplotlib.pyplot as plt
 import numpy as np
 import sympy as sp
 
-from sistemas_dinamicos import convolucion, escalon, integrar, routh
+from sistemas_dinamicos import campo_fase, convolucion, escalon, graficar, integrar, retrato_fase, routh
 
 
 class HerramientasTest(unittest.TestCase):
+    def test_graficar_estilos_por_curva_y_reinicio(self):
+        series = {"primera": [1, 2], "segunda": [1, 2],
+                  "tercera": [2, 1], "cuarta": [0, 1]}
+        fig, ax = graficar([0, 1], series, titulo="Ejemplo")
+        self.addCleanup(plt.close, fig)
+        self.assertEqual([line.get_linestyle() for line in ax.lines], ["-", "-.", ":", "-"])
+        self.assertEqual([line.get_label() for line in ax.lines], list(series))
+        self.assertEqual(ax.get_title(), "Ejemplo")
+        np.testing.assert_array_equal(ax.lines[1].get_ydata(), [1, 2])
+        fig2, ax2 = graficar([0, 1], {"única": [0, 1]})
+        self.addCleanup(plt.close, fig2)
+        self.assertEqual(ax2.lines[0].get_linestyle(), "-")
+
+    def test_campo_fase_y_retrato(self):
+        fig, ax = campo_fase(lambda x, y: (y, -x), (-1, 1), (-1, 1))
+        self.assertEqual(len(ax.collections), 1)
+        plt.close(fig)
+        fig, ax = retrato_fase([[[0, 0], [1, 2]]])
+        self.assertEqual(len(ax.lines), 2)
+        plt.close(fig)
+        with self.assertRaises(ValueError):
+            campo_fase(lambda x, y: (1, 2), (-1, 1), (-1, 1))
+        with self.assertRaises(ValueError):
+            retrato_fase([[[0, 1, 2]]])
+        plt.close("all")
+
     def test_escalon(self):
         np.testing.assert_array_equal(escalon([-1, 0, 1]), [0, 1, 1])
 

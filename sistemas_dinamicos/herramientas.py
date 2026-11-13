@@ -12,12 +12,59 @@ def escalon(t, inicio=0):
 
 
 def graficar(t, series, *, titulo="", xlabel="Tiempo (s)", ylabel="Amplitud"):
-    """Graficar un diccionario de nombres y series sobre el mismo eje."""
+    """Graficar series con estilos sólido, raya-punto y punteado en ciclo."""
     fig, ax = plt.subplots()
-    for nombre, valores in series.items():
-        ax.plot(t, valores, label=nombre)
+    estilos = ("-", "-.", ":")
+    for indice, (nombre, valores) in enumerate(series.items()):
+        ax.plot(t, valores, label=nombre, linestyle=estilos[indice % len(estilos)])
     ax.set(title=titulo, xlabel=xlabel, ylabel=ylabel)
     ax.grid(True)
+    ax.legend()
+    fig.tight_layout()
+    return fig, ax
+
+
+def campo_fase(f, limites_x, limites_y, *, puntos=(25, 21), titulo="",
+               xlabel="Estado 1", ylabel="Estado 2"):
+    """Representar un campo autónomo de dos estados con flechas normalizadas.
+
+    El color indica la magnitud de las derivadas expresadas en las unidades
+    elegidas para cada eje; con unidades distintas no es una rapidez física.
+    """
+    x = np.linspace(*limites_x, puntos[0])
+    y = np.linspace(*limites_y, puntos[1])
+    X, Y = np.meshgrid(x, y)
+    U, V = f(X, Y)
+    U, V = np.asarray(U, dtype=float), np.asarray(V, dtype=float)
+    if U.shape != X.shape or V.shape != X.shape:
+        raise ValueError("El campo debe devolver dos matrices con la forma de la malla.")
+    if not np.all(np.isfinite(U)) or not np.all(np.isfinite(V)):
+        raise ValueError("El campo debe contener derivadas finitas.")
+    magnitud = np.hypot(U, V)
+    norma = np.where(magnitud == 0, 1, magnitud)
+    fig, ax = plt.subplots(figsize=(9, 5.5))
+    flechas = ax.quiver(X, Y, U / norma, V / norma, magnitud,
+                        cmap="viridis", pivot="mid")
+    fig.colorbar(flechas, ax=ax, label="Magnitud de derivadas (escala elegida)")
+    ax.set(title=titulo, xlabel=xlabel, ylabel=ylabel)
+    ax.grid(True, alpha=0.3)
+    fig.tight_layout()
+    return fig, ax
+
+
+def retrato_fase(trayectorias, *, titulo="", xlabel="Estado 1", ylabel="Estado 2"):
+    """Representar trayectorias bidimensionales y marcar sus condiciones iniciales."""
+    fig, ax = plt.subplots(figsize=(8, 5))
+    for i, trayectoria in enumerate(trayectorias):
+        trayectoria = np.asarray(trayectoria, dtype=float)
+        if trayectoria.ndim != 2 or trayectoria.shape[1] != 2 or not len(trayectoria):
+            raise ValueError("Cada trayectoria debe tener forma (instantes, 2).")
+        if not np.all(np.isfinite(trayectoria)):
+            raise ValueError("Las trayectorias deben contener valores finitos.")
+        ax.plot(trayectoria[:, 0], trayectoria[:, 1], label=f"Trayectoria {i + 1}")
+        ax.plot(trayectoria[0, 0], trayectoria[0, 1], "k.", markersize=6)
+    ax.set(title=titulo, xlabel=xlabel, ylabel=ylabel)
+    ax.grid(True, alpha=0.3)
     ax.legend()
     fig.tight_layout()
     return fig, ax
