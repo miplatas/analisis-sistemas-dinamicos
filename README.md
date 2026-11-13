@@ -93,7 +93,7 @@ los notebooks; repítela si cambian las dependencias.
   [ecuaciones y Laplace](Fase_01_Fundamentos_y_Modelado/1_3_Ecuaciones_Diferenciales_Laplace/tema.ipynb),
   [transferencia y estados](Fase_01_Fundamentos_y_Modelado/1_4_Funcion_Transferencia_Espacio_Estados/tema.ipynb).
 * **Fase 2:** [impulso y convolución](Fase_02_Analisis_Sistemas_Lineales/2_1_Respuesta_Impulso_Convolucion/tema.ipynb),
-  [transitorio y error](Fase_02_Analisis_Sistemas_Lineales/2_2_Respuesta_Transitoria_Error_SISO/tema.ipynb),
+  [respuesta transitoria y estacionaria](Fase_02_Analisis_Sistemas_Lineales/2_2_Respuesta_Transitoria%20y%20en%20Estado%20Estacionario/tema.ipynb),
   [estados MIMO](Fase_02_Analisis_Sistemas_Lineales/2_3_Solucion_Ecuacion_Estados_MIMO/tema.ipynb),
   [Bode](Fase_02_Analisis_Sistemas_Lineales/2_4_Respuesta_Frecuencia_Bode/tema.ipynb).
 * **Fase 3:** [Euler](Fase_03_Metodos_Numericos/3_1_Metodo_Euler/tema.ipynb),
